@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ratedquestions</h1>
+<h1>Rated Questions</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

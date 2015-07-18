@@ -1,18 +1,18 @@
 <?php
-/* @var $this ProjectteamsController */
+/* @var $this UsertypeController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Projectteams',
+	'Usertypes',
 );
 
 $this->menu=array(
-	array('label'=>'New project team', 'url'=>array('create')),
-	array('label'=>'Manage Project Teams', 'url'=>array('admin')),
+	array('label'=>'Create Usertype', 'url'=>array('create')),
+	array('label'=>'Manage Usertype', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Project Teams</h1>
+<h1>Usertypes</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

@@ -45,12 +45,19 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, type, password, create_time, modified_time, age', 'required'),
+			array('username, password, age,email', 'required'),
+            array('create_time','default','value'=>new CDbExpression('NOW()'),'on' => 'insert'),
 			array('perhour, age', 'numerical', 'integerOnly'=>true),
 			array('username', 'length', 'max'=>16),
 			array('type, taxes, gender', 'length', 'max'=>6),
+           // array('type','default','value'=>'public'),
+        //    array('type','in','range'=>array('admin','user','public')),
+         //   array('gender','in','range'=>array('Male','Female')),
 			array('email, FBlink', 'length', 'max'=>255),
-			array('password', 'length', 'max'=>32),
+            array('email','email'),
+            array('email','unique'),
+            array('password', 'length', 'max'=>32),
+            //array('merital_status','in','range'=>array('married','divorced','widower','single')),
 			array('cost, merital_status', 'length', 'max'=>8),
 			array('FBlogin', 'length', 'max'=>45),
 			array('start_date, end_date, birthday', 'safe'),
@@ -141,6 +148,16 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+
+    public function getGenderOptions(){
+        return array('Male' => 'Male', 'Female' => 'Female');
+    }
+
+    public function getMarriageOptions(){
+        return array('Married'=>'Married','Divorced'=>'Divorced','Widower'=>'Widower','Single'=>'Single');
+    }
+
 
 	/**
 	 * Returns the static model of the specified AR class.

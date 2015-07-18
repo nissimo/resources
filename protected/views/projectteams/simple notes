@@ -1,0 +1,59 @@
+user diff
+* The followings are the available model relations:
+ * @property Absences[] $absences
+ * @property Pastprojectteams[] $pastprojectteams
+
+ public function relations()
+ 	{
+ 		// NOTE: you may need to adjust the relation name and the related
+ 		// class name for the relations automatically generated below.
+ 		return array(
+ 			'absences' => array(self::HAS_MANY, 'Absences', 'user_id'),
+ 			'pastprojectteams' => array(self::HAS_MANY, 'Pastprojectteams', 'user_id'),
+ 			'projectteams' => array(self::HAS_MANY, 'Projectteams', 'user_id'),
+ 			'usersskills' => array(self::HAS_MANY, 'Usersskills', 'user_id'),
+ 		);
+ 	}
+
+
+ skills diff
+ 	* The followings are the available model relations:
+     * @property Pastprojectteams[] $pastprojectteams
+
+     public function relations()
+     	{
+     		// NOTE: you may need to adjust the relation name and the related
+     		// class name for the relations automatically generated below.
+     		return array(
+     			'pastprojectteams' => array(self::HAS_MANY, 'Pastprojectteams', 'skills_id'),
+     			'projectteams' => array(self::HAS_MANY, 'Projectteams', 'skills_id'),
+     			'questions' => array(self::HAS_MANY, 'Questions', 'skills_id'),
+     			'usersskills' => array(self::HAS_MANY, 'Usersskills', 'skills_id'),
+     		);
+     	}
+
+
+     	projectteams diff
+
+     	 * The followings are the available columns in table 'projectteams':
+         * @property integerstring $id
+
+// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('project_id, skills_id, user_id,percentage,price_to_client,startdate',user_id', 'required'),
+
+projects diff
+
+* The followings are the available model relations:
+ * @property Pastprojectteams[] $pastprojectteams
+
+ public function relations()
+ 	{
+ 		// NOTE: you may need to adjust the relation name and the related
+ 		// class name for the relations automatically generated below.
+ 		return array(
+ 			'pastprojectteams' => array(self::HAS_MANY, 'Pastprojectteams', 'project_id'),
+ 			'projectteams' => array(self::HAS_MANY, 'Projectteams', 'project_id'),
+ 		);
+ 	}

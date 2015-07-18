@@ -1,18 +1,18 @@
 <?php
-/* @var $this ProjectteamsController */
+/* @var $this AbsencetypeController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Projectteams',
+	'Absencetypes',
 );
 
 $this->menu=array(
-	array('label'=>'New project team', 'url'=>array('create')),
-	array('label'=>'Manage Project Teams', 'url'=>array('admin')),
+	array('label'=>'Create Absencetype', 'url'=>array('create')),
+	array('label'=>'Manage Absencetype', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Project Teams</h1>
+<h1>Absencetypes</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

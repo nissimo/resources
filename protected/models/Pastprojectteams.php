@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This is the model class for table "projectteams".
+ * This is the model class for table "pastprojectteams".
  *
- * The followings are the available columns in table 'projectteams':
- * @property integer $id
+ * The followings are the available columns in table 'pastprojectteams':
+ * @property string $id
  * @property string $project_id
  * @property string $percentage
  * @property string $startdate
@@ -18,14 +18,14 @@
  * @property Skills $skills
  * @property User $user
  */
-class Projectteams extends CActiveRecord
+class Pastprojectteams extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'projectteams';
+		return 'pastprojectteams';
 	}
 
 	/**
@@ -36,8 +36,7 @@ class Projectteams extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('project_id, skills_id, user_id,percentage,price_to_client,startdate', 'required'),
-
+			array('project_id, skills_id, user_id', 'required'),
 			array('project_id, skills_id, user_id', 'length', 'max'=>10),
 			array('percentage', 'length', 'max'=>45),
 			array('price_to_client', 'length', 'max'=>8),
@@ -97,7 +96,7 @@ class Projectteams extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('project_id',$this->project_id,true);
 		$criteria->compare('percentage',$this->percentage,true);
 		$criteria->compare('startdate',$this->startdate,true);
@@ -115,7 +114,7 @@ class Projectteams extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Projectteams the static model class
+	 * @return Pastprojectteams the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

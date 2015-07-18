@@ -19,15 +19,12 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'project_id'); ?>
-		<?php echo $form->textField($model,'project_id',array('size'=>10,'maxlength'=>10)); ?>
+		<?php /*echo $form->textField($model,'project_id',array('size'=>10,'maxlength'=>10));*/ ?>
+        <?php  echo $form->dropDownList($model,'project_id',
+            CHtml::listData(Project::model()->findall(),'id','projectname')); ?>
 		<?php echo $form->error($model,'project_id'); ?>
 	</div>
 

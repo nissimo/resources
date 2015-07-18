@@ -27,7 +27,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>6,'maxlength'=>6)); ?>
+        <?php  /*echo $form->dropDownList($model,'type',
+            CHtml::listData(Usertype::model()->findall(),'id','role')); */?>
+        <?php echo CHtml::activeDropDownList($model,'type',CHtml::listData(Usertype::model()->findall(),'role','role'));?>
+
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 
@@ -87,13 +90,18 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->textField($model,'gender',array('size'=>6,'maxlength'=>6)); ?>
+
+        <?php echo CHtml::activeDropDownList($model,'gender',$model->getGenderOptions(),
+           array('empty' => '(Select a gender)'));?>
+
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'merital_status'); ?>
-		<?php echo $form->textField($model,'merital_status',array('size'=>8,'maxlength'=>8)); ?>
+        <?php echo CHtml::activeDropDownList($model,'merital_status',$model->getMarriageOptions(),
+           array('empty' => '(Select a status)'));?>
+
 		<?php echo $form->error($model,'merital_status'); ?>
 	</div>
 

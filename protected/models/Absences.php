@@ -1,31 +1,29 @@
 <?php
 
 /**
- * This is the model class for table "projectteams".
+ * This is the model class for table "absences".
  *
- * The followings are the available columns in table 'projectteams':
+ * The followings are the available columns in table 'absences':
  * @property integer $id
- * @property string $project_id
- * @property string $percentage
- * @property string $startdate
- * @property string $enddate
- * @property string $skills_id
  * @property string $user_id
- * @property string $price_to_client
+ * @property string $type
+ * @property string $start_date
+ * @property string $end_date
+ * @property integer $paid_percentage
+ * @property integer $pm_approved
+ * @property integer $admin_approved
  *
  * The followings are the available model relations:
- * @property Project $project
- * @property Skills $skills
  * @property User $user
  */
-class Projectteams extends CActiveRecord
+class Absences extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'projectteams';
+		return 'absences';
 	}
 
 	/**
@@ -36,15 +34,14 @@ class Projectteams extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('project_id, skills_id, user_id,percentage,price_to_client,startdate', 'required'),
-
-			array('project_id, skills_id, user_id', 'length', 'max'=>10),
-			array('percentage', 'length', 'max'=>45),
-			array('price_to_client', 'length', 'max'=>8),
-			array('startdate, enddate', 'safe'),
+			array('user_id, type, start_date', 'required'),
+			array('paid_percentage, pm_approved, admin_approved', 'numerical', 'integerOnly'=>true),
+			array('user_id', 'length', 'max'=>10),
+			array('type', 'length', 'max'=>15),
+			array('end_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, project_id, percentage, startdate, enddate, skills_id, user_id, price_to_client', 'safe', 'on'=>'search'),
+			array('id, user_id, type, start_date, end_date, paid_percentage, pm_approved, admin_approved', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,8 +53,6 @@ class Projectteams extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
-			'skills' => array(self::BELONGS_TO, 'Skills', 'skills_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
@@ -69,13 +64,13 @@ class Projectteams extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'project_id' => 'Project',
-			'percentage' => 'Percentage',
-			'startdate' => 'Startdate',
-			'enddate' => 'Enddate',
-			'skills_id' => 'Skills',
 			'user_id' => 'User',
-			'price_to_client' => 'Price To Client',
+			'type' => 'Type',
+			'start_date' => 'Start Date',
+			'end_date' => 'End Date',
+			'paid_percentage' => 'Paid Percentage',
+			'pm_approved' => 'Pm Approved',
+			'admin_approved' => 'Admin Approved',
 		);
 	}
 
@@ -98,13 +93,13 @@ class Projectteams extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('project_id',$this->project_id,true);
-		$criteria->compare('percentage',$this->percentage,true);
-		$criteria->compare('startdate',$this->startdate,true);
-		$criteria->compare('enddate',$this->enddate,true);
-		$criteria->compare('skills_id',$this->skills_id,true);
 		$criteria->compare('user_id',$this->user_id,true);
-		$criteria->compare('price_to_client',$this->price_to_client,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('start_date',$this->start_date,true);
+		$criteria->compare('end_date',$this->end_date,true);
+		$criteria->compare('paid_percentage',$this->paid_percentage);
+		$criteria->compare('pm_approved',$this->pm_approved);
+		$criteria->compare('admin_approved',$this->admin_approved);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -115,7 +110,7 @@ class Projectteams extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Projectteams the static model class
+	 * @return Absences the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
